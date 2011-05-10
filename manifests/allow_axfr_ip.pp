@@ -1,3 +1,16 @@
+# Public: Manage ACL for hosts allowed to perform zone transfers.
+#
+# namevar - A String IP or CIDR address.
+# cluster - A String tag to determine the DNS cluster this ACL entry applies to.
+# ensure  - The state of the resource as a String.  Valid values are absent
+#           and present (default: present).
+#
+# Examples
+#
+#   # Configure this server to be a slave of the 'ns1' cluster
+#   @@powerdns::allow_axfr_ip { $ipaddress_eth0:
+#     cluster => 'ns1',
+#   }
 define powerdns::allow_axfr_ip($cluster, $ensure='present') {
   if($ensure !~ /(absent|present)/) {
     fail("Invalid ensure value for Powerdns::Allow_axfr_ip[${name}].")
