@@ -6,5 +6,5 @@ define powerdns::server($cluster, $ensure=present) {
     before => Class['Powerdns::Augeas_lenses'],
   }
 
-  Powerdns::Allow_axfr_ip<|| cluster == $cluster ||>
+  Powerdns::Allow_axfr_ip<<| cluster == $cluster |>>
 }

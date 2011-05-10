@@ -17,8 +17,7 @@ define powerdns::allow_axfr_ip($cluster, $ensure='present') {
   } else {
     augeas { "Removing ${name} from allow-axfr-ips":
       context => '/files/etc/powerdns/pdns.conf',
-      changes => "rm allow-axfr-ips/*[.name=${name}']",
-      onlyif  => "match allow-axfr-ips/*[.='${name}'] size != 0",
+      changes => "rm allow-axfr-ips/*[.='${name}']",
       require => Class['Powerdns::Augeas_lenses'],
     }
   }
